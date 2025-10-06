@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve my Python web app
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/var/www/my-python-app
+Environment="PATH=/var/www/my-python-app/venv/bin"
+ExecStart=/var/www/my-python-app/venv/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+
+[Install]
+WantedBy=multi-user.target
